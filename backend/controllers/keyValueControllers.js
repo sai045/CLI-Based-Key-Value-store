@@ -1,4 +1,4 @@
-const KeyValue = require('../models/KeyValue');
+const KeyValue = require('../models/keyValue');
 
 exports.store = async (req, res) => {
   try {
