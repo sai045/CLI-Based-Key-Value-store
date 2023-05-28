@@ -46,7 +46,7 @@ program
     .action(() => {
         prompt(authQuestions).then(async (answers) => {
             const { username, password } = answers
-            const response = await fetch("http://localhost:3000/auth/register", {
+            const response = await fetch("https://sai045-cli-based-key-value-store.onrender.com/auth/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -61,13 +61,23 @@ program
         });
     });
 
+
+
+program
+    .command('random')
+    .description('Add a User')
+    .action(() => {
+        console.log("random")
+    });
+
+
 program
     .command('login')
     .description('Login a User')
     .action(() => {
         prompt(authQuestions).then(async (answers) => {
             const { username, password } = answers
-            const response = await fetch("http://localhost:3000/auth/login", {
+            const response = await fetch("https://sai045-cli-based-key-value-store.onrender.com/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -78,6 +88,7 @@ program
                 }),
             })
             const responseData = await response.json()
+            console.log(responseData)
             setToken(responseData.token)
         });
     });
@@ -89,7 +100,7 @@ program
     .action(() => {
         prompt(keyQuestions).then(async (answers) => {
             const { key, value } = answers
-            const response = await fetch("http://localhost:3000/key-value", {
+            const response = await fetch("https://sai045-cli-based-key-value-store.onrender.com/key-value", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -111,7 +122,7 @@ program
     .action(() => {
         prompt(getKeyQuestions).then(async (answers) => {
             const { key } = answers
-            const response = await fetch(`http://localhost:3000/key-value/${key}`, {
+            const response = await fetch(`https://sai045-cli-based-key-value-store.onrender.com/key-value/${key}`, {
                 headers: {
                     "authorization": getToken()
                 }
@@ -127,7 +138,7 @@ program
     .action(() => {
         prompt(keyQuestions).then(async (answers) => {
             const { key, value } = answers
-            const response = await fetch(`http://localhost:3000/key-value/${key}`, {
+            const response = await fetch(`https://sai045-cli-based-key-value-store.onrender.com/key-value/${key}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -149,7 +160,7 @@ program
     .action(() => {
         prompt(getKeyQuestions).then(async (answers) => {
             const { key } = answers
-            const response = await fetch(`http://localhost:3000/key-value/${key}`, {
+            const response = await fetch(`https://sai045-cli-based-key-value-store.onrender.com/key-value/${key}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
